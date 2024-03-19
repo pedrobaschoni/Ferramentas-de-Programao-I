@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vendas_por_pessoa" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0270ef72-4ae2-4755-976b-c7155b30ffaf">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
+	<queryString language="EJBQL">
+		<![CDATA[Select v FROM Venda v ORDER BY v.pessoa.codigo]]>
+	</queryString>
+	<field name="pessoa" class="br.edu.ifsp.pep.model.Pessoa">
+		<fieldDescription><![CDATA[pessoa]]></fieldDescription>
+	</field>
+	<field name="data" class="java.time.LocalDateTime">
+		<fieldDescription><![CDATA[data]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="status" class="br.edu.ifsp.pep.model.StatusVenda">
+		<fieldDescription><![CDATA[status]]></fieldDescription>
+	</field>
+	<variable name="CONTADOR" class="java.lang.Integer" resetType="Group" resetGroup="GroupPessoa" calculation="Count">
+		<variableExpression><![CDATA[$F{id}]]></variableExpression>
+	</variable>
+	<group name="GroupPessoa">
+		<groupExpression><![CDATA[$F{pessoa}.getCodigo()]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<staticText>
+					<reportElement x="0" y="10" width="100" height="30" uuid="6989e6a5-0cc4-4ed0-9013-7af672aeb1f4">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eee9f8f2-648b-4b47-81ec-1eb0ff799f65"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ID]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="102" y="10" width="100" height="30" uuid="8cb1bebb-7815-4e8d-a5e1-a67533b41571">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="25386608-1e9a-4c8f-8544-19b3f8d5411f"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Data]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="240" y="5" width="100" height="30" uuid="c9d10142-7122-4bcf-a747-48ab40ac6bc1">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4d175636-618c-4745-bb7f-95a87cded829"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Pessoa]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50">
+				<textField>
+					<reportElement x="140" y="0" width="100" height="30" uuid="89c93313-0517-4665-9440-df451b6d85f3"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{CONTADOR}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="140" height="30" uuid="9c95d829-5aae-4a9c-8181-3051df643626"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Quantidade de Vendas:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="0" width="555" height="1" uuid="797e8180-5191-4510-aba1-976ed5ab2378">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="9" width="555" height="30" uuid="6e5528a3-a1d3-4d57-b716-8f5f7ea80a95"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Vendas por Pessoa]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="46" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="2" width="100" height="30" uuid="05f73b02-b044-4f7e-a672-5a0db76adb24">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eee9f8f2-648b-4b47-81ec-1eb0ff799f65"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="102" y="3" width="132" height="30" uuid="d470a2ed-06f5-45fa-88ca-9160758d818e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="25386608-1e9a-4c8f-8544-19b3f8d5411f"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{data}.format( java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss") )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="235" y="0" width="204" height="30" uuid="d278c25c-bc62-4b87-a349-f5f93a0f73c3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4d175636-618c-4745-bb7f-95a87cded829"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{pessoa}.getNome()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

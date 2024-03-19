@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ejbqlDataAdapter class="net.sf.jasperreports.data.ejbql.EjbqlDataAdapterImpl">
+  <name>New Data Adapter 1</name>
+  <persistanceUnitName>conexaoPU</persistanceUnitName>
+</ejbqlDataAdapter>
